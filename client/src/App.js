@@ -1,27 +1,37 @@
 import './App.css';
 import React, {useEffect, useState} from "react";
 import TaskForm from "./TaskForm";
+import TaskList from "./TaskList";
+
 
 function App() {
-    const [tasks, setTasks] = useState(null);
+    const [tasks, setTasks] = useState([]);
+
     useEffect(() => {
+        let isActive = true;
         fetch("/api")
             .then((res) => res.json())
-            .then((tasks) => setTasks(tasks.message));
-    }, []);
+            .then((tasks) => {
+                if (isActive) {
+                    setTasks(tasks.message)
+                }
+            })
+            .catch((error) => console.log(error.message));
+        return () => {
+            isActive = false;
+        };
+    }, [tasks]);
 
+
+    function addNewTask(newTask){
+        setTasks([newTask, ...tasks]);
+    }
     return (
         <div className="App">
             <h1>Task Manager</h1>
-
             <input type={"text"} placeholder={"Search"}/>
-            <div>
-                {!tasks? "loading data.. " : tasks.map((item) =>
-                    <p className={"task-list"} key={item.id}>
-                        {item.title} <br/>{item.description}
-                    </p>)}
-            </div>
-            <TaskForm/>
+            <TaskForm addNewTask={addNewTask}/>
+            <TaskList tasks={tasks}/>
         </div>
     );
 }

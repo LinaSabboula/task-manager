@@ -1,8 +1,11 @@
 const express = require("express");
-
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8080;
-
 const app = express();
+
+app.use(bodyParser.urlencoded({  extended: true}));
+app.use(express.json());
+app.use(express.urlencoded());
 
 const tasks = [{
     id: 1,
@@ -17,9 +20,25 @@ const tasks = [{
     title: "Learn Array Manipulation",
     description: "Learn how to manipulate arrays in javascript"
 }];
-app.get("/api", (req, res) => {
+
+
+app.get('/api', (req, res) => {
     res.json({ message: tasks });
 });
+
+app.post('/api/add',(req,res) =>{
+    tasks.push(req.body);
+    res.send(req.body);
+});
+
+app.delete('/api/delete', (req, res) => {
+    res.send("DELETE request");
+});
+
+app.put('/api/edit', (req, res) => {
+    res.send("PUT request");
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
