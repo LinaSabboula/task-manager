@@ -39,22 +39,23 @@
 h1 {
   color: #b36f8b;
   text-align: center;
-  font-size: 32px;
+  font-size: 46px;
   font-weight: 900;
+  font-family: "Trebuchet MS", sans-serif
 }
+
 input {
   outline: none;
   box-shadow: none;
   border-bottom: none;
+  color: #2b1c1c;
   border: 0;
 }
 input :hover{
   border-bottom: #b36f8b;
   box-shadow: #b36f8b;
 }
-input{
-  color: #2b1c1c;
-}
+
 .new-task-form{
   border-radius: 25px;
   border: darkgrey;
@@ -79,7 +80,6 @@ input{
   background-color:#b36f8b;
 }
 
-
 button{
   appearance:none;
   -webkit-appearance:none;
@@ -91,17 +91,3 @@ button{
   border-radius:5px;
   width:100%;
 }
-/*.task-container{*/
-/*  display: flex;*/
-/*  background-color: darkgrey;*/
-/*}*/
-/*.inputField input{*/
-/*  width: 85%;*/
-/*  height: 100%;*/
-/*  outline: none;*/
-/*  border-radius: 3px;*/
-/*  border: 1px solid #ccc;*/
-/*  font-size: 17px;*/
-/*  padding-left: 15px;*/
-/*  transition: all 0.3s ease;*/
-/*}*/
