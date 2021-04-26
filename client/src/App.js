@@ -31,7 +31,7 @@ function App() {
             <h1>Task Manager</h1>
             <input type={"text"} placeholder={"Search"}/>
             <TaskForm addNewTask={addNewTask}/>
-            <TaskList tasks={tasks}/>
+            <TaskList tasks={tasks} editTask={editTask}/>
         </div>
     );
 }

@@ -28,8 +28,8 @@ function Task({task, editTask}) {
         e.preventDefault();
         const editedTask = {
             id: task.id,
-            title: edit.title? edit.title : task.title,
-            description: edit.description? edit.description : task.description
+            title: edit.title,
+            description: edit.description
         }
 
         editTask(editedTask)

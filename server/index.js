@@ -42,7 +42,13 @@ app.delete('/api/delete', (req, res) => {
 });
 
 app.put('/api/edit', (req, res) => {
-    res.send("PUT request");
+    let taskID = req.body.id;
+    let task = tasks.filter(item => {
+        return item.id === taskID;
+    })[0];
+    task.title = req.body.title? req.body.title: task.title;
+    task.description = req.body.description? req.body.description : task.description;
+    res.json({ message: "Task "+ taskID + " edited."});
 });
 
 

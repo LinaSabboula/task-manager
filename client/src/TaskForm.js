@@ -40,7 +40,7 @@ function TaskForm({addNewTask}) {
                 name={"title"}
                 onChange={handleTaskChange}
                 value={task.title}
-                placeholder={"Update Task Title"} required/>
+                placeholder={"Task Title"} required/>
 
             <input name={"description"}
                    type={"text"}
