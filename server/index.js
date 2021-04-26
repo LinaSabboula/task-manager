@@ -34,11 +34,11 @@ app.post('/api/add',(req,res) =>{
 app.delete('/api/delete', (req, res) => {
     let taskID = req.body.id;
     let task = tasks.filter(item => {
-        return item.id === taskID;
+        return item.id.toString() === taskID;
     })[0];
     const index = tasks.indexOf(task);
     tasks.splice(index, 1);
-    res.json({ message: 'Task' + taskID + ' deleted.'});
+    res.json({ message: 'Task ' + taskID + ' deleted.'});
 });
 
 app.put('/api/edit', (req, res) => {
