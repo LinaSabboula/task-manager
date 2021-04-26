@@ -54,7 +54,7 @@ function Task({task}) {
             <input type="text" defaultValue={task.title}  name={"title"} onChange={handleTaskChange}/>
             <br/>
             <span>
-                <input type="text"  defaultValue={task.description} name={"description"} onChange={handleTaskChange}/>
+                <input id={"description"} type="text" defaultValue={task.description} name={"description"} onChange={handleTaskChange}/>
             </span>
             <button hidden={true} type={"submit"}>Save</button>
         </form>
