@@ -26,6 +26,15 @@ app.get('/api', (req, res) => {
     res.json({ message: tasks });
 });
 
+app.get('/api/search', (req, res) => {
+    let taskID = req.body.id;
+
+    let task = tasks.filter(item => {
+        return item.id === taskID;
+    })[0];
+    res.json({message: task})
+});
+
 app.post('/api/add',(req,res) =>{
     tasks.push(req.body);
     res.send(req.body);
