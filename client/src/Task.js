@@ -51,15 +51,13 @@ function Task({task, editTask}) {
     }
     return (
     <div className={"task-container"}>
-        <form>
+        <form onSubmit={handleEditSubmit}>
             <input type="text" defaultValue={task.title}  name={"title"} onChange={handleTaskChange}/>
             <br/>
             <input type="text"  defaultValue={task.description} name={"description"} onChange={handleTaskChange}/>
-            {!edit.id ? (
-                <button onClick={handleEditSubmit}>Edit</button>) : ('')
-            }
+            <button hidden={true} type={"submit"}>Save</button>
+            <button onClick={() => handleDelete(task.id)}>Delete</button>
         </form>
-        <button onClick={(e) => handleDelete(task.id, e)}>Delete</button>
     </div>
   )
 }
