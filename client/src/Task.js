@@ -1,13 +1,12 @@
 import React, { useState} from 'react'
 
-function Task({task, editTask}) {
+function Task({task}) {
     const [edit, setEdit] = useState({
         id: null,
         title: "",
         description: ""});
 
     function handleDelete(taskID) {
-        console.log("handler ", taskID)
             const requestOptions = {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json'},
@@ -32,7 +31,7 @@ function Task({task, editTask}) {
             description: edit.description
         }
 
-        editTask(editedTask)
+        // editTask(editedTask)
         setEdit('');
         const requestOptions = {
             method: 'PUT',
@@ -50,14 +49,16 @@ function Task({task, editTask}) {
                 console.log(res)})
     }
     return (
-    <div className={"task-container"}>
-        <form onSubmit={handleEditSubmit}>
+    <div className={"tasks"}>
+        <form onSubmit={handleEditSubmit} >
             <input type="text" defaultValue={task.title}  name={"title"} onChange={handleTaskChange}/>
             <br/>
-            <input type="text"  defaultValue={task.description} name={"description"} onChange={handleTaskChange}/>
+            <span>
+                <input type="text"  defaultValue={task.description} name={"description"} onChange={handleTaskChange}/>
+            </span>
             <button hidden={true} type={"submit"}>Save</button>
-            <button onClick={() => handleDelete(task.id)}>Delete</button>
         </form>
+        <button onClick={() => handleDelete(task.id)}>Delete</button>
     </div>
   )
 }

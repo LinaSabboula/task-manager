@@ -7,21 +7,20 @@ function TaskForm({addNewTask}) {
         title: "",
         description: "",
     });
-
     function handleTaskChange(e){
         const value = e.target.value;
         setTask({...task, [e.target.name]: value});
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        e.target.reset();
         const newTask = {
             id: uuidv4(),
             title: task.title,
             description: task.description
         }
         addNewTask({...task, id: uuidv4()});
-        setTask("");
+        setTask( {title:"",description: ""});
+
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -40,14 +39,14 @@ function TaskForm({addNewTask}) {
                 name={"title"}
                 onChange={handleTaskChange}
                 value={task.title}
-                placeholder={"Task Title"} required/>
+                placeholder={"New Task Title"} required/>
 
             <input name={"description"}
                    type={"text"}
                    value={task.description}
                    onChange={handleTaskChange}
-                   placeholder={"Task Description"}/>
-            <button type={"submit"}>Add</button>
+                   placeholder={"New Task Description"}/>
+            <button className={"new-task-btn"} type={"submit"}>Add</button>
         </form>
     </div>
   )
