@@ -20,24 +20,27 @@ function TaskForm({addNewTask}) {
             title: task.title,
             description: task.description
         }
-        addNewTask({...task, id:uuidv4()});
-        setTask({...task, task: ""});
-        fetch('/api/add', {
+        addNewTask({...task, id: uuidv4()});
+        setTask("");
+        const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newTask)
-        }).then(() =>
-            console.log("new task added"))
+        };
+        fetch('/api/add', requestOptions)
+            .then(() => {
+                console.log("new task added");
+            });
     }
   return (
     <div className={"center"}>
         <form id={"new-task-form"} onSubmit={handleSubmit}>
             <input
-                    type={"text"}
-                    name={"title"}
-                    onChange={handleTaskChange}
-                    value={task.title}
-                    placeholder={"Task Title"} required/>
+                type={"text"}
+                name={"title"}
+                onChange={handleTaskChange}
+                value={task.title}
+                placeholder={"Update Task Title"} required/>
 
             <input name={"description"}
                    type={"text"}
